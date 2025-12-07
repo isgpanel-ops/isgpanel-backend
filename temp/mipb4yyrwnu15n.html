@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yıllık Eğitim Planı</title>
+  </head>
+  <body>
+    <div
+      class="a4-page"
+      style="
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 10mm;
+        box-sizing: border-box;
+        background: #ffffff;
+        font-family: 'Calibri', 'Arial', sans-serif;
+        font-size: 10pt;
+        color: #000000;
+      "
+    >
+      <!-- DIŞ ÇERÇEVE -->
+      <div
+        style="
+          border: 1px solid #000000;
+          box-sizing: border-box;
+          padding: 6mm 0 8mm 0;
+          min-height: 270mm;
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <!-- ÜST SATIR: LOGO - BAŞLIK - TARİH -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #000000;
+            padding: 8px 14px;
+          "
+        >
+          <!-- Logo alanı -->
+          <div
+            style="
+              width: 110px;
+              text-align: left;
+              font-size: 9pt;
+              margin-left: 6mm;
+              margin-top: -2mm;
+            "
+          >
+            <img
+              src=""
+              alt="logo"
+              style="max-width: 120px; max-height: 54px;"
+            />
+          </div>
+
+          <!-- Başlık -->
+          <div
+            style="
+              flex: 1;
+              text-align: center;
+              font-weight: bold;
+              font-size: 13pt;
+              letter-spacing: 0.05em;
+              margin-right: 20px;
+            "
+          >
+            YILLIK EĞİTİM PLANI
+          </div>
+
+          <!-- Tarih / Geçerlilik -->
+          <div
+            style="
+              width: 140px;
+              text-align: right;
+              font-size: 9pt;
+              line-height: 1.4;
+            "
+          >
+            <div><span style="font-weight: bold">Tarih:</span> 13.12.2025</div>
+            <div>
+              <span style="font-weight: bold">Geçerlilik:</span> 31.12.2025
+            </div>
+          </div>
+        </div>
+
+        <!-- 4'LÜ BANT: FİRMA / SGK / TEHLİKE / TOPLAM SAAT -->
+        <div
+          style="
+            padding: 6px 18px 4px 18px;
+            font-size: 9pt;
+            border-bottom: 1px solid #000000;
+            background: #f5f7fb;
+          "
+        >
+          <table
+            style="
+              width: 100%;
+              border-collapse: collapse;
+              table-layout: fixed;
+            "
+          >
+            <tr>
+              <td style="padding: 4px 4px; white-space: nowrap">
+                <span style="font-weight: bold; color: #1f4e79">FİRMA ADI:</span>
+                <span>İSG PANEL YAZILIM </span>
+              </td>
+              <td style="padding: 4px 4px; white-space: nowrap">
+                <span style="font-weight: bold; color: #1f4e79">SGK SİCİL NO:</span>
+                <span></span>
+              </td>
+              <td style="padding: 4px 4px; white-space: nowrap">
+                <span style="font-weight: bold; color: #1f4e79">TEHLİKE SINIFI:</span>
+                <span>Az Tehlikeli</span>
+              </td>
+              <td style="padding: 4px 4px; white-space: nowrap">
+                <span style="font-weight: bold; color: #1f4e79"
+                  >TOPLAM EĞİTİM SÜRESİ:</span
+                >
+                <span>8 saat</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- EĞİTİM PLANI TABLOSU -->
+        <div
+          style="
+            padding: 8px 14px 0 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+          "
+        >
+          <table
+            style="
+              width: 100%;
+              border-collapse: collapse;
+              font-size: 9pt;
+            "
+          >
+            <thead>
+              <tr>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 5%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  NO
+                </th>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 32%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  EĞİTİM KONUSU
+                </th>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 18%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  EĞİTİMİ VERECEK KİŞİ/KURULUŞ
+                </th>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 12%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  KATILIMCI
+                </th>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 12%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  PLANLANAN<br />EĞİTİM TARİHİ
+                </th>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 8%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  SÜRE<br />(saat)
+                </th>
+                <th
+                  style="
+                    border: 1px solid #000000;
+                    padding: 5px 3px;
+                    width: 13%;
+                    text-align: center;
+                    font-weight: bold;
+                    background: #ddebf7;
+                  "
+                >
+                  GERÇEKLEŞEN<br />EĞİTİM TARİHİ
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              
+      <tr>
+        <td class="text-center">1</td>
+        <td>İŞYERİ TEMİZLİĞİ VE DÜZENİ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">2</td>
+        <td>ÇALIŞMA MEVZUATI İLE İLGİLİ BİLGİLER</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">3</td>
+        <td>ÇALIŞANLARIN YASAL HAK VE SORUMLULUKLARI</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">4</td>
+        <td>İŞ KAZASI VE MESLEK HASTALIKLARINDAN DOĞAN HUKUKİ SONUÇLAR</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">5</td>
+        <td>MESLEK HASTALIKLARININ SEBEPLERİ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center">2</td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">6</td>
+        <td>HASTALIKTAN KORUNMA PRENSİPLERİ VE KORUNMA TEKNİKLERİNİN UYGULANMASI</td>
+        <td class="text-center">İŞYERİ HEKİMİ</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">7</td>
+        <td>BİYOLOJİK VE PSİKOLOJİK RİSK ETMENLERİ</td>
+        <td class="text-center">İŞYERİ HEKİMİ</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">8</td>
+        <td>İLKYARDIM</td>
+        <td class="text-center">İŞYERİ HEKİMİ</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">9</td>
+        <td>TÜTÜN ÜRÜNLERİNİN ZARARLARI VE PASİF ETKİLENİM</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center">2</td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">10</td>
+        <td>KİMYASAL, FİZİKSEL VE ERGONOMİK RİSK ETMENLERİ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">11</td>
+        <td>ELLE KALDIRMA VE TAŞIMA</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">12</td>
+        <td>YANGIN EĞİTİMİ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">13</td>
+        <td>İŞ EKİPMANLARININ GÜVENLİ KULLANIMI</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">14</td>
+        <td>EKRANLI ARAÇLARLA ÇALIŞMA</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">15</td>
+        <td>ELEKTRİK TEHLİKELERİ, RİSKLERİ VE ÖNLEMLERİ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center">4</td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">16</td>
+        <td>İŞYERİNDE SAĞLIK GÖZETİMİ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">17</td>
+        <td>KİŞİSEL KORUYUCU DONANIM KULLANIMI</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">18</td>
+        <td>SAĞLIK VE GÜVENLİK GENEL KURALLARI VE GÜVENLİK KÜLTÜRÜ</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">19</td>
+        <td>TAHLİYE VE KURTARMA</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">20</td>
+        <td>DİĞER</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">21</td>
+        <td>DİĞER</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">22</td>
+        <td>DİĞER</td>
+        <td class="text-center">İŞ GÜVENLİĞİ UZMANI</td>
+        <td class="text-center">TÜM ÇALIŞANLAR</td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+        <td class="text-center"></td>
+      </tr>
+    
+            </tbody>
+          </table>
+        </div>
+
+        <!-- İMZA ALANI -->
+        <div
+          style="
+            padding: 10mm 18mm 6mm 18mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+          "
+        >
+          <div style="text-align: center; width: 32%;">
+            <div style="font-weight: bold; margin-bottom: 4px;">
+              MEHMET ARIKAN 
+            </div>
+            <div style="margin-bottom: 14px;">İŞ GÜVENLİĞİ UZMANI</div>
+            <div>İMZA</div>
+          </div>
+
+          <div style="text-align: center; width: 32%;">
+            <div style="font-weight: bold; margin-bottom: 4px;">
+              
+            </div>
+            <div style="margin-bottom: 14px;">İŞYERİ HEKİMİ</div>
+            <div>İMZA</div>
+          </div>
+
+          <div style="text-align: center; width: 32%;">
+            <div style="font-weight: bold; margin-bottom: 4px;">
+              
+            </div>
+            <div style="margin-bottom: 14px;">İŞVEREN / İŞVEREN VEKİLİ</div>
+            <div>KAŞE - İMZA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
