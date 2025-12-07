@@ -1,195 +1,75 @@
-// ----------------------------------------------------------
-//  SERVER.JS — TÜM PDF SİSTEMLERİ + AUTH SİSTEMİ
-// ----------------------------------------------------------
-
-require("dotenv").config(); // 🔹 ENV DEĞİŞKENLERİNİ OKU
+require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const mongoose = require("mongoose");              // 🔹 EKLENDİ
-const authRoutes = require("./routes/auth");       // 🔹 EKLENDİ
+const mongoose = require("mongoose");
+
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
-// Body Parser
+// Body parser
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-// ----------------------------------------------------------
-//  CORS AYARI (LOKAL + PROD FRONTEND)
-// ----------------------------------------------------------
+// CORS
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL
+  ],
+  credentials: true
+}));
 
-const allowedOrigins = [
-  "http://localhost:5173",                                         // lokal geliştirme
-  process.env.FRONTEND_URL || "https://senin-frontend-adresin.vercel.app" // prod frontend (env'den okunur)
-];
+// MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB bağlı"))
+  .catch(err => console.error("MongoDB hata:", err));
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+// Routes
+app.use("/api/auth", authRoutes);
 
-// ----------------------------------------------------------
-//  MONGODB BAĞLANTISI (AUTH İÇİN)
-// ----------------------------------------------------------
-
-const MONGO_URI =
-  process.env.MONGO_URI || "mongodb://127.0.0.1:27017/isgpanelAuth";
-
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("MongoDB bağlandı (Auth)"))
-  .catch((err) => console.error("MongoDB bağlantı hatası:", err));
-
-// ----------------------------------------------------------
-//  AUTH ROUTES
-// ----------------------------------------------------------
-
-app.use("/api/auth", authRoutes); // 🔹 /api/auth/register ve /api/auth/login
-
-// ----------------------------------------------------------
-// PDF FONKSİYONLARI (MEVCUTLARIN HEPSİ KORUNDU)
-// ----------------------------------------------------------
-
-const { createPdf } = require("./pdf/prosedur"); // Prosedür PDF
-const { createRiskEkipPdf } = require("./pdf/riskEkip"); // Risk ekibi PDF
-const { createDofPdf } = require("./pdf/dof"); // DÖF PDF
-const {
-  createRiskDegerlendirmesiPdf,
-} = require("./pdf/riskdegerlendirmesi"); // RD PDF
-const { createAcilEkipPdf } = require("./pdf/acilEkip"); // Acil ekip PDF
-
-// 🆕 YILLIK EĞİTİM PLANI PDF
+// PDF Routes (hazır çalışır)
+const { createPdf } = require("./pdf/prosedur");
+const { createRiskEkipPdf } = require("./pdf/riskEkip");
+const { createDofPdf } = require("./pdf/dof");
+const { createRiskDegerlendirmesiPdf } = require("./pdf/riskdegerlendirmesi");
+const { createAcilEkipPdf } = require("./pdf/acilEkip");
 const { createYillikEgitimPlaniPdf } = require("./pdf/yillikEgitimPlani");
 
-// ----------------------------------------------------------
-//  ACİL DURUM EKİPLERİ
-// ----------------------------------------------------------
-
-app.post(
-  ["/api/pdf/acil-ekipleri", "/api/acil-ekipleri/pdf"],
-  async (req, res) => {
-    try {
-      const payload = req.body || {};
-      const pdfPath = await createAcilEkipPdf(payload);
-
-      res.setHeader("Content-Type", "application/pdf");
-      res.sendFile(path.resolve(pdfPath), (err) => {
-        if (err && !res.headersSent)
-          res.status(500).json({ error: "PDF gönderilemedi" });
-      });
-    } catch (e) {
-      console.error("Acil ekip PDF hata:", e);
-      res.status(500).json({ error: "Acil ekip PDF oluşturulamadı" });
-    }
-  }
-);
-
-// ----------------------------------------------------------
-//  DÖF PDF
-// ----------------------------------------------------------
-
-app.post("/api/dof/pdf", async (req, res) => {
-  try {
-    const pdfPath = await createDofPdf(req.body || {});
-    res.setHeader("Content-Type", "application/pdf");
-    res.sendFile(path.resolve(pdfPath));
-  } catch (e) {
-    console.error("DÖF PDF hata:", e);
-    res.status(500).json({ error: "DÖF PDF oluşturulamadı" });
-  }
+app.post("/api/prosedur/pdf", async (req, res) => {
+  const pdfPath = await createPdf(req.body);
+  res.sendFile(path.resolve(pdfPath));
 });
-
-// ----------------------------------------------------------
-//  RİSK DEĞERLENDİRMESİ PDF
-// ----------------------------------------------------------
-
-app.post(
-  ["/api/pdf/risk-degerlendirmesi", "/api/risk-degerlendirmesi/pdf"],
-  async (req, res) => {
-    try {
-      const pdfPath = await createRiskDegerlendirmesiPdf(req.body || {});
-      res.setHeader("Content-Type", "application/pdf");
-      res.sendFile(path.resolve(pdfPath));
-    } catch (e) {
-      console.error("Risk Değerlendirmesi PDF hata:", e);
-      res.status(500).json({
-        error: "Risk Değerlendirmesi PDF oluşturulamadı",
-      });
-    }
-  }
-);
-
-// ----------------------------------------------------------
-//  RİSK EKİP ATAMA PDF
-// ----------------------------------------------------------
 
 app.post("/api/riskekip/pdf", async (req, res) => {
-  try {
-    const pdfPath = await createRiskEkipPdf(req.body || {});
-    res.setHeader("Content-Type", "application/pdf");
-    res.sendFile(path.resolve(pdfPath));
-  } catch (e) {
-    console.error("Risk Ekip PDF hata:", e);
-    res.status(500).json({ error: "Risk Ekip PDF oluşturulamadı" });
-  }
+  const pdfPath = await createRiskEkipPdf(req.body);
+  res.sendFile(path.resolve(pdfPath));
 });
 
-// ----------------------------------------------------------
-//  PROSEDÜR PDF
-// ----------------------------------------------------------
-
-app.post("/api/prosedur/pdf", async (req, res) => {
-  try {
-    const pdfPath = await createPdf(req.body || {});
-    res.setHeader("Content-Type", "application/pdf");
-    res.sendFile(path.resolve(pdfPath));
-  } catch (e) {
-    console.error("Prosedür PDF hata:", e);
-    res.status(500).json({ error: "Prosedür PDF oluşturulamadı" });
-  }
+app.post("/api/dof/pdf", async (req, res) => {
+  const pdfPath = await createDofPdf(req.body);
+  res.sendFile(path.resolve(pdfPath));
 });
 
-// ----------------------------------------------------------
-// 🆕  YILLIK EĞİTİM PLANI PDF
-// ----------------------------------------------------------
+app.post("/api/risk-degerlendirmesi/pdf", async (req, res) => {
+  const pdfPath = await createRiskDegerlendirmesiPdf(req.body);
+  res.sendFile(path.resolve(pdfPath));
+});
 
-app.post(
-  ["/api/pdf/yillik-egitim-plani", "/api/yillik-egitim-plani/pdf"],
-  async (req, res) => {
-    try {
-      const pdfPath = await createYillikEgitimPlaniPdf(req.body || {});
-      res.setHeader("Content-Type", "application/pdf");
-      res.sendFile(path.resolve(pdfPath), (err) => {
-        if (err && !res.headersSent)
-          res
-            .status(500)
-            .json({ error: "Yıllık Eğitim Planı PDF gönderilemedi" });
-      });
-    } catch (e) {
-      console.error("Yıllık Eğitim Planı PDF hata:", e);
-      res.status(500).json({
-        error: "Yıllık Eğitim Planı PDF oluşturulamadı",
-        detail: e.toString(),
-      });
-    }
-  }
-);
+app.post("/api/acil-ekipleri/pdf", async (req, res) => {
+  const pdfPath = await createAcilEkipPdf(req.body);
+  res.sendFile(path.resolve(pdfPath));
+});
 
-// ----------------------------------------------------------
-//  STATİK DOSYA SERVE
-// ----------------------------------------------------------
+app.post("/api/yillik-egitim-plani/pdf", async (req, res) => {
+  const pdfPath = await createYillikEgitimPlaniPdf(req.body);
+  res.sendFile(path.resolve(pdfPath));
+});
 
+// Uploads static
 app.use("/uploads", express.static("uploads"));
 
-// ----------------------------------------------------------
-//  SERVER START
-// ----------------------------------------------------------
-
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`SERVER ÇALIŞIYOR → http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log("Backend çalışıyor:", PORT));
